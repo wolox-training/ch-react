@@ -1,0 +1,44 @@
+.tech-border {
+    border: 1px solid $green;
+    border-radius: 5px;
+    height: 350px;
+    width: 200px;
+    
+    .tech-container {
+        align-items: center;
+        background-color: $green;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: flex-start;
+        position: relative;
+        top: 10px;
+        left: 10px;
+        width: 100%;
+
+        .tech-title, .tech-date, .tech-description, .tech-image {
+            margin: 10px 0;
+        }
+        
+        .tech-description {
+            text-align: center;
+            margin: 10px;
+        }
+    
+        .tech-image {
+            height: $tech-logo-size;
+            width: $tech-logo-size;
+        }
+
+        .tech-date {
+            font-weight: 700;
+        }
+
+        .tech-title {
+            font-weight: 700;
+        }
+
+    }
+}
+
