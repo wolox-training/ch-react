@@ -1,18 +1,18 @@
 .title-container {  
-    width: 100px;
     height: 90px;
+    width: 100px;
 
     h2 {
+        left: 40px;
         position: relative;
         text-align: center;
-        top: 20px;
-        left: 40px;
+        top: 20px;   
     }
 
     &::before{
         background: url('./assets/triangle.svg') 50px;
+        content: '';
         @include image-size(50px);
         position: absolute;
-        content:'';
     }
 }
