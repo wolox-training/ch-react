@@ -12,31 +12,22 @@
         flex-direction: column;
         height: 100%;
         justify-content: flex-start;
+        left: 10px;
         position: relative;
         top: 10px;
         width: 100%;
 
-        .tech-date, .tech-description, .tech-image, .tech-title,    {
+        * {
             margin: 10px 0;
         }
 
-        .tech-date {
+        :nth-child(2), :nth-child(3) {
             font-weight: 700;
         }
         
-        .tech-description {
+        :last-child {
             text-align: center;
             margin: 10px;
         }
-    
-        .tech-image {
-            height: $tech-logo-size;
-            width: $tech-logo-size;
-        }
-
-        .tech-title {
-            font-weight: 700;
-        }
-
     }
 }
