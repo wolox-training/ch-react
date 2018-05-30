@@ -14,11 +14,14 @@
         justify-content: flex-start;
         position: relative;
         top: 10px;
-        left: 10px;
         width: 100%;
 
-        .tech-title, .tech-date, .tech-description, .tech-image {
+        .tech-date, .tech-description, .tech-image, .tech-title,    {
             margin: 10px 0;
+        }
+
+        .tech-date {
+            font-weight: 700;
         }
         
         .tech-description {
@@ -31,14 +34,9 @@
             width: $tech-logo-size;
         }
 
-        .tech-date {
-            font-weight: 700;
-        }
-
         .tech-title {
             font-weight: 700;
         }
 
     }
 }
-
