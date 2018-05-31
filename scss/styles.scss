@@ -1,5 +1,17 @@
 * {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.body-container {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 40px;
+  width: 100%;
+}
+
+@mixin image-size($size) {
+  width: $size;
+  height: $size;
 }
 
 body {
