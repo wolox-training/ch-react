@@ -1,3 +1,7 @@
+.tech {
+  padding: 10px 40px;
+}
+
 .tech-container {
 	align-items: center;
 	background-color: $green;
@@ -9,8 +13,8 @@
 	margin-bottom: 50px;
 	margin-right: 30px;
 	position: relative;
-	height: 350px;
-	width: 200px;
+	height: 280px;
+	width: 180px;
 
 	&::before {
 		bottom: 10px;
