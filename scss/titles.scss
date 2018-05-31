@@ -1,6 +1,15 @@
-.title-container{
-    align-items: center;
-    display: flex;
-    font-size: $text-medium;
-    margin: 0 10%;
+.main-title {
+	position: relative;
+	margin: 40px 20px;
+	font-size: $text-big;
+
+	&::before {
+		background: url('./assets/triangle.svg') no-repeat;
+		content: '';
+		@include image-size(50px);
+		position: absolute;
+		top: -18px;
+		left: -28px;
+		z-index: -1;
+	}
 }
