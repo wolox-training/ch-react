@@ -3,37 +3,37 @@
   border-radius: 5px;
   height: 350px;
   width: 200px;
+}
 
-  .tech-container {
-    align-items: center;
-    background-color: $green;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: flex-start;
-    left: 10px;
-    position: relative;
-    top: 10px;
-    width: 100%;
+.tech-container {
+  align-items: center;
+  background-color: $green;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  left: 10px;
+  position: relative;
+  top: 10px;
+  width: 100%;
+}
 
-    .tech-title,
-    .tech-description,
-    .tech-image {
-      margin: 10px 0;
-    }
+.tech-title,
+.tech-description,
+.tech-image {
+  margin: 10px 0;
+}
 
-    .tech-description {
-      text-align: center;
-      margin: 10px;
-    }
+.tech-description {
+  text-align: center;
+  margin: 10px;
+}
 
-    .tech-image {
-      @include image-size(100px);
-    }
+.tech-image {
+  @include image-size(100px);
+}
 
-    .tech-title {
-      font-weight: 700;
-    }
-  }
+.tech-title {
+  font-weight: bold;
 }
