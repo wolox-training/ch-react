@@ -1,6 +1,7 @@
 .main-title {
   position: relative;
-  margin: 0 20px;
+  margin: 40px 20px;
+  font-size: $text-big;
 
   &::before {
     background: url('./assets/triangle.svg') no-repeat;
