@@ -1,14 +1,14 @@
 .main-title {
-	position: relative;
-	margin: 0 20px;
+  position: relative;
+  margin: 0 20px;
 
-	&::before {
-		background: url('./assets/triangle.svg') no-repeat;
-		content: '';
-		@include image-size(50px);
-		position: absolute;
-		top: -18px;
-		left: -28px;
-		z-index: -1;
-	}
+  &::before {
+    background: url('./assets/triangle.svg') no-repeat;
+    content: '';
+    @include image-size(50px);
+    position: absolute;
+    top: -18px;
+    left: -28px;
+    z-index: -1;
+  }
 }
