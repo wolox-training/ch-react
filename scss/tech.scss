@@ -1,19 +1,17 @@
-.tech {
+.tech-container {
   padding: 10px 40px;
 }
 
-.tech-container {
+.tech {
   align-items: center;
   background-color: $green;
-  border-radius: 5px;
+  border-radius: 1px;
   display: flex;
   flex-direction: column;
-  flex-basis: 150px;
-  left: 10px;
-  margin-bottom: 50px;
-  margin-right: 30px;
+  padding: 5px;
   position: relative;
-  height: 280px;
+  margin: 10px;
+  min-height: 280px;
   width: 180px;
 
   &::before {
@@ -31,9 +29,8 @@
 
 .tech-title,
 .tech-date,
-.tech-description,
 .tech-image {
-  margin: 10px 0;
+  margin-bottom: 10px;
 }
 
 .tech-description {
