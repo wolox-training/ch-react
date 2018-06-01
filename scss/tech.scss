@@ -2,6 +2,7 @@
   display: grid;
   grid-gap: 15px;
   grid-template-columns: repeat(3, $tech-width);
+  justify-content: center;
   justify-items: center;
   padding: 10px 40px;
   margin: 10px;
