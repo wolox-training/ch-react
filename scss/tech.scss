@@ -1,16 +1,16 @@
 .tech-container {
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: repeat(3, $tech-width);
+  grid-template-columns: repeat(3, max-content);
   justify-content: center;
   justify-items: center;
   padding: 10px 40px;
   margin: 10px;
-  
-  .tech:first-child {    
+
+  .tech:first-child {
     border-right: 2px solid $green;
     grid-row: 1/3;
-    justify-content: center;    
+    justify-content: center;
   }
 }
 
@@ -20,14 +20,7 @@
   flex-direction: column;
   padding: 5px;
   min-height: 280px;
-  width: 180px;
-
-  &:hover {
-    &::before {
-      left: 10px;
-      top: 10px;
-    }
-  }
+  width: $tech-width;
 }
 
 .tech-title,
@@ -51,20 +44,4 @@
 
 .tech-release {
   font-weight: bold;
-}
-
-@media screen and (max-width: 1024px){
-  .tech {
-    border-top: 2px solid $green;
-    padding-top: 20px;
-  }
-
-  .tech-container {
-    grid-template-columns: 1fr;
-    justify-content: center;
-
-    .tech:first-child {
-      border: none;
-    }
-  }
 }
