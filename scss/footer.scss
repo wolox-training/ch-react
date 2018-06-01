@@ -1,24 +1,30 @@
 footer {
-    align-items: center;
-    background-color: $blue;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    padding: 40px 0 10px 0;
+	align-items: center;
+	background-color: $blue;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 40px 0 10px 0;
 
-    *{
-        margin: 10px 5px;
-    }
-
-    :first-child {
-        color: white;
-        font-size: $text-big;
-        text-transform: uppercase;
-    }
-
-    :last-child {
-        color: white;
-        font-size: $text-small;
-        align-self: flex-end;
-    }
+	* {
+		margin: 12px 10px;
+	}
 }
+
+.footer-copyright {
+	align-self: flex-end;
+	color: white;
+	font-size: $text-small;
+	margin-right: 30px;
+}
+
+.footer-img {
+	width: 400px;
+}
+
+.footer-title {
+	color: white;
+	font-size: $text-big;
+	text-transform: uppercase;
+}
+
