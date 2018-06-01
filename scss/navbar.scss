@@ -1,27 +1,27 @@
 .header {
-	align-items: center;
-	background-color: $white;
-	box-shadow: 0 5px 5px 0 $header-color;
-	display: flex;
-	height: $nav-height;
-	justify-content: space-between;
-	padding: 0 20px;
-	position: fixed;
-	width: 100%;
-	z-index: 1;
+  align-items: center;
+  background-color: $white;
+  box-shadow: 0 5px 5px 0 $header-color;
+  display: flex;
+  height: $nav-height;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 .header-title {
-	font-size: $text-big;
+  font-size: $text-big;
 }
 
 .header-img {
-	content: url('./assets/wolox_logo.svg');
-	min-width: 200px;
+  content: url('./assets/wolox_logo.svg');
+  min-width: 200px;
 }
 
 @media screen and (max-width: 1024px) {
-	.header-title {
-		visibility: hidden;
-	}
+  .header-title {
+    visibility: hidden;
+  }
 }
