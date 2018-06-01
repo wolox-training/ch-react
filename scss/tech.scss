@@ -17,7 +17,7 @@
   width: 180px;
   
   &::before {
-    transition: top 0.5s ease, left 0.5s ease;
+    transition: left 0.5s ease, top 0.5s ease;
     bottom: 10px;
     border: 1px solid $green;
     border-radius: 5px;
@@ -35,7 +35,6 @@
     &::before {
       left: 10px;
       top: 10px;
-      transition: top 0.2s ease, left 0.2s ease;
     }
   }
 }
