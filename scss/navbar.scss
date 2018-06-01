@@ -1,18 +1,21 @@
-header {
+.header {
   align-items: center;
-  background-color: white;
-  box-shadow: 0px 5px 5px 0px rgba(196, 196, 196, 0.4);
+  background-color: $white;
+  box-shadow: 0 5px 5px 0 $header-color;
   display: flex;
-  font-size: $text-big;
-  height: 90px;  
+  height: $nav-height;
   justify-content: space-between;
   padding: 0 20px;
   position: fixed;
-  width: 100%;  
+  width: 100%;
   z-index: 1;
-  
-  &::before {
-    content: url('./assets/wolox_logo.svg');
-    width: 200px;    
-  }
+}
+
+.header-title {
+  font-size: $text-big;
+}
+
+.header-img {
+  content: url('./assets/wolox_logo.svg');
+  min-width: 200px;
 }
