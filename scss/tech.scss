@@ -1,7 +1,7 @@
 .tech-container {
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: repeat(3, $tech-width);
+  grid-template-columns: repeat(3, max-content);
   justify-content: center;
   padding: 10px 40px;
 
