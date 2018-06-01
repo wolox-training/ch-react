@@ -7,24 +7,24 @@ footer {
 	padding: 40px 0 10px 0;
 
 	* {
-		margin: 10px 5px;
+		margin: 12px 10px;
 	}
+}
+
+.footer-copyright {
+	align-self: flex-end;
+	color: white;
+	font-size: $text-small;
+	margin-right: 30px;
+}
+
+.footer-img {
+	width: 400px;
 }
 
 .footer-title {
 	color: white;
 	font-size: $text-big;
-    text-transform: uppercase;
-    
-    &::after {
-        background: url('./assets/triangle.svg') no-repeat;
-        content: '';
-        width: 200px;
-    }
+	text-transform: uppercase;
 }
 
-.footer-copyright {
-	color: white;
-	font-size: $text-small;
-	align-self: flex-end;
-}
