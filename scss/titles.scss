@@ -13,3 +13,16 @@
     z-index: -1;
   }
 }
+
+@media screen and (max-width: 1024px){
+  .main-title {
+    margin-top: 40px;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
+
+    &::before {
+      left: 0px;
+    }
+  }
+}

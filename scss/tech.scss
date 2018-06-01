@@ -5,6 +5,7 @@
   grid-template-columns: repeat(3, $tech-width);
   justify-content: center;
   padding: 10px 40px;
+  margin: 10px;
   
   .tech:first-child {    
     border-right: 2px solid $green;
@@ -15,12 +16,9 @@
 
 .tech {
   align-items: center;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   padding: 5px;
-  position: relative;
-  margin: 10px 20px;
   min-height: 280px;
   width: $tech-width;
 }
@@ -48,43 +46,17 @@
   font-weight: bold;
 }
 
-// .tech-react {
-//   border-right: 2px solid $green;
-// 	grid-area: 1 / 2 / 5 / 3;
-// 	height: 100%;
-	
-// }
+@media screen and (max-width: 1024px){
+  .tech {
+    border-top: 2px solid $green;
+    padding-top: 20px;
+  }
 
-// .tech-angular {
-// 	grid-area: 1 / 3 / 3 / 4;
-// }
+  .tech-container {
+    grid-template-columns: 1fr;
 
-// .tech-vue {
-// 	grid-area: 1 / 4 / 3 / 5;
-// }
-
-// .tech-polymer {
-// 	grid-area: 3 / 3 / 5 / 4;
-// }
-
-// .tech-elm {
-// 	grid-area: 3 / 4 / 5 / 5;
-// }
-
-// .tech-ruby {
-//   border-right: 2px solid $green;
-// 	grid-area: 1 / 2 / 5 / 3;
-// 	height: 100%;
-// }
-
-// .tech-node {
-// 	grid-area: 1 / 3 / 3 / 4;
-// }
-
-// .tech-asp {
-// 	grid-area: 1 / 4 / 3 / 5;
-// }
-
-// .tech-django {
-// 	grid-area: 3 / 3 / 5 / 4;
-// }
+    .tech:first-child {
+      border: none;
+    }
+  }
+}

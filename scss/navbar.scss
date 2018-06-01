@@ -13,6 +13,12 @@ header {
   
   &::before {
     content: url('./assets/wolox_logo.svg');
-    width: 200px;    
+    min-width: 200px;    
+  }
+}
+
+@media screen and (max-width: 1024px){
+  header {
+    visibility: hidden;
   }
 }
