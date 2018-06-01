@@ -1,10 +1,10 @@
 header {
   align-items: center;
-  background-color: white;
-  box-shadow: 0px 5px 5px 0px rgba(196, 196, 196, 0.4);
+  background-color: $white;
+  box-shadow: 0px 5px 5px 0px $header-color;
   display: flex;
   font-size: $text-big;
-  height: 90px;
+  height: $nav-height;
   justify-content: space-between;
   padding: 0 20px;
   position: fixed;
