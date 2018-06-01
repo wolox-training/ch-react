@@ -1,29 +1,27 @@
-footer {
+.footer {
   align-items: center;
   background-color: $blue;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px 0 10px 0;
-
-  * {
-    margin: 12px 10px;
-  }
+  padding: 40px 0 10px;
 }
 
 .footer-copyright {
   align-self: flex-end;
-  color: white;
+  color: $white;
   font-size: $text-small;
-  margin-right: 30px;
+  margin: 12px 30px;
 }
 
 .footer-img {
-  width: 400px;
+  margin: 12px 10px;
+  min-width: 400px;
 }
 
 .footer-title {
   color: white;
   font-size: $text-big;
+  margin: 12px 10px;
   text-transform: uppercase;
 }
