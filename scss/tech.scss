@@ -1,9 +1,8 @@
 .tech-container {
   display: grid;
-  flex-wrap: wrap;
   grid-gap: 15px;
   grid-template-columns: repeat(3, $tech-width);
-  justify-content: center;
+  justify-items: center;
   padding: 10px 40px;
   margin: 10px;
   
@@ -54,6 +53,7 @@
 
   .tech-container {
     grid-template-columns: 1fr;
+    justify-content: center;
 
     .tech:first-child {
       border: none;

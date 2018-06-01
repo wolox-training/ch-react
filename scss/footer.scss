@@ -28,9 +28,17 @@ footer {
 	text-transform: uppercase;
 }
 
-@media screen and (max-width: 1024px){
-	.footer-img {
-		max-width: 200px;
+@media screen and (max-width: 1024px) {
+	.footer-copyright {
+		align-self: center;
+		margin: 40px 0;
 	}
-  }
 
+	.footer-img {
+		max-width: 300px;
+	}
+
+	.footer-title {
+		font-size: $text-medium;
+	}
+}
