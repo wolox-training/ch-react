@@ -1,1 +1,1 @@
-export { default as Game } from './screens/Game';
+export { default as App } from './screens/Game';
