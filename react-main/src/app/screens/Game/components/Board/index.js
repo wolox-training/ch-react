@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { calculateWinner } from '../../../../utils';
-
+import { calculateWinner } from './utils';
 import Square from './components/Square';
 
 class Board extends Component {
