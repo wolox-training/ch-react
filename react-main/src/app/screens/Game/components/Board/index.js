@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import Square from './components/Square';
 
 class Board extends Component {
-  renderSquare(i) {
-    return <Square />;
-  }
+  renderSquare = i => <Square />;
 
   render() {
     const status = 'Next player: X';
