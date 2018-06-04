@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
+import { calculateWinner } from '../../../../utils';
+
 import Square from './components/Square';
 
 class Board extends Component {
@@ -8,21 +10,10 @@ class Board extends Component {
     isNext: true
   };
 
-  calculateWinner = squares => {
-    const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
-      }
-    }
-    return null;
-  };
-
   handleClick = i => {
     const { isNext, squares } = this.state;
     const diffSquares = squares.slice();
-    if (this.calculateWinner(squares) || squares[i]) return;
+    if (calculateWinner(squares) || squares[i]) return;
     diffSquares[i] = isNext ? 'X' : 'O';
     this.setState({ squares: diffSquares, isNext: !this.state.isNext });
   };
@@ -31,7 +22,7 @@ class Board extends Component {
 
   render() {
     const { isNext, squares } = this.state;
-    const winner = this.calculateWinner(squares);
+    const winner = calculateWinner(squares);
     let status;
 
     if (winner) {
