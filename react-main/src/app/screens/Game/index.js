@@ -62,6 +62,8 @@ class Game extends Component {
       status = `Next player is: ${xIsNext ? 'X' : 'O'}`;
     }
 
+    console.log('array', current.squares);
+
     return (
       <div className="game">
         <div className="game-board">
