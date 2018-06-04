@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './scss/index.scss';
-import registerServiceWorker from './registerServiceWorker';
-
-import App from '~components/App'; // eslint-disable-line import/first
+import { App } from './app';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
