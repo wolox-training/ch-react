@@ -4,7 +4,7 @@ import Board from './components/Board';
 
 import './styles.scss';
 
-export class Game extends Component {
+class Game extends Component {
   render() {
     return (
       <div className="game">
@@ -19,3 +19,5 @@ export class Game extends Component {
     );
   }
 }
+
+export default Game;
