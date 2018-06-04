@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Square from './components/Square';
 
 class Board extends Component {
+  state = {
+    squares: Array(9).fill(null)
+  };
+
   renderSquare(i) {
-    return <Square />;
+    return <Square 
+      value={this.state.squares[i]} 
+      onClick={() => this.handleClick(i)}
+    />;
   }
 
   render() {
     const status = 'Next player: X';
 
     return (
-      <div>
+      <Fragment>
         <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
@@ -28,7 +35,7 @@ class Board extends Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
