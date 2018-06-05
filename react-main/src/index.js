@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+import './scss/index.scss';
 import mainStore from './redux/store';
 import { App } from './app';
 
@@ -11,7 +12,8 @@ const initialState = {
 };
 
 const store = mainStore(initialState);
-console.log(store.getState().historyReducer);
+console.log('store', store);
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

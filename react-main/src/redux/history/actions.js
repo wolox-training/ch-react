@@ -1,21 +1,20 @@
 export const actions = {
-  nextStep: 'NEXT_STEP',
-  addStep: 'ADD_STEP'
+  addStep: 'ADD_STEP',
+  setStep: 'SET_STEP'
 };
 
-export const handleNextStep = position => ({
-  type: actions.nextStep,
-  position
+export const addStep = () => ({
+  type: actions.addStep
 });
 
-export const addStep = stepNumber => ({
-  type: actions.addStep,
+export const setStep = stepNumber => ({
+  type: actions.setStep,
   stepNumber
 });
 
 const actionCreators = {
-  handleNextStep: position => dispatch => dispatch(handleNextStep(position)),
-  addStep: stepNumber => dispatch => dispatch(addStep(stepNumber))
+  addStep: () => dispatch => dispatch(addStep()),
+  setStep: stepNumber => dispatch => dispatch(setStep(stepNumber))
 };
 
 export default actionCreators;

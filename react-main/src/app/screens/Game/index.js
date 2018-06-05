@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { handleNextStep, addStep } from '../../../redux/history/actions';
+import { addStep, setStep } from '../../../redux/history/actions';
 
 import Board from './components/Board';
 
@@ -10,7 +10,6 @@ import './styles.scss';
 class Game extends Component {
   state = {
     history: [{ squares: Array(9).fill(null) }],
-    stepNumber: 0,
     xIsNext: true
   };
 
@@ -26,29 +25,34 @@ class Game extends Component {
   };
 
   handleClick = i => {
-    const { history, xIsNext, stepNumber } = this.state;
-    const current = history.slice(0, stepNumber + 1)[history.length - 1];
-    console.log('current', current);
-    const squares = current.squares.slice();
-    console.log('squares', squares);
+    const { history, xIsNext } = this.state;
+    const { stepNumber, addStep } = this.props;
+    const current = history.slice(0, stepNumber + 1);
+    const modifiedHistory = current[current.length - 1];
+    console.log('current', current, history, stepNumber);
+    const squares = modifiedHistory.squares.slice();
+
     if (this.calculateWinner(squares) || squares[i]) return;
     squares[i] = xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([{ squares }]),
-      xIsNext: !xIsNext,
-      stepNumber: history.length
+      xIsNext: !xIsNext
     });
+    addStep(stepNumber);
   };
 
   jumpTo = step => {
+    const { setStep } = this.props;
+    console.log('jumpTo', step);
+    setStep(step);
     this.setState({
-      stepNumber: step,
       xIsNext: step % 2 === 0
     });
   };
 
   render() {
-    const { xIsNext, history, stepNumber } = this.state;
+    const { xIsNext, history } = this.state;
+    const { stepNumber } = this.props;
     const current = history[stepNumber];
     const winner = this.calculateWinner(current.squares);
     const moves = history.map((step, move) => {
@@ -68,6 +72,7 @@ class Game extends Component {
     }
 
     console.log('props', this.props);
+    console.log('state', this.state);
 
     return (
       <div className="game">
@@ -84,13 +89,12 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => ({
-  stepNumber: state.stepNumber,
-  position: state.position
+  stepNumber: state.historyReducer.stepNumber
 });
 
 const masDispatchToProps = dispatch => ({
-  handleNextStep: position => dispatch(handleNextStep(position)),
-  addStep: stepNumber => dispatch(addStep(stepNumber))
+  addStep: () => dispatch(addStep()),
+  setStep: stepNumber => dispatch(setStep(stepNumber))
 });
 
 export default connect(
