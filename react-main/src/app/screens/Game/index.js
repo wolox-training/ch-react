@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import Board from './components/Board';
 
-import './styles.scss';
-
 class Game extends Component {
   render() {
     return (

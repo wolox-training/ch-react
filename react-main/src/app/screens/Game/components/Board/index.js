@@ -1,15 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
+import { calculateWinner } from './utils';
 import Square from './components/Square';
 
 class Board extends Component {
-  renderSquare = i => <Square />;
+  state = {
+    squares: Array(9).fill(null),
+    isNext: true
+  };
+
+  handleClick = i => {
+    const { isNext, squares } = this.state;
+    const diffSquares = squares.slice();
+    if (calculateWinner(squares) || squares[i]) return;
+    diffSquares[i] = isNext ? 'X' : 'O';
+    this.setState({ squares: diffSquares, isNext: !this.state.isNext });
+  };
+
+  renderSquare = i => <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
 
   render() {
-    const status = 'Next player: X';
+    const { isNext, squares } = this.state;
+    const winner = calculateWinner(squares);
+    let status;
+
+    if (winner) {
+      status = `The winner is: ${winner}`;
+    } else {
+      status = `Next player is: ${isNext ? 'X' : 'O'}`;
+    }
 
     return (
-      <div>
+      <Fragment>
         <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
@@ -26,7 +48,7 @@ class Board extends Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
