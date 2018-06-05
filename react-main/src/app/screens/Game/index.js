@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
 import Board from './components/Board';
-
-import './styles.scss';
+import { calculateWinner } from './utils';
 
 class Game extends Component {
   state = {
@@ -11,22 +10,12 @@ class Game extends Component {
     xIsNext: true
   };
 
-  calculateWinner = squares => {
-    const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
-      }
-    }
-    return null;
-  };
-
   handleClick = i => {
     const { history, xIsNext, stepNumber } = this.state;
-    const current = history.slice(0, stepNumber + 1)[history.length - 1];
-    const squares = current.squares.slice();
-    if (this.calculateWinner(squares) || squares[i]) return;
+    const current = history.slice(0, stepNumber + 1);
+    const modifiedHistory = current[current.length - 1];
+    const squares = modifiedHistory.squares.slice();
+    if (calculateWinner(squares) || squares[i]) return;
     squares[i] = xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([{ squares }]),
@@ -45,7 +34,7 @@ class Game extends Component {
   render() {
     const { xIsNext, history, stepNumber } = this.state;
     const current = history[stepNumber];
-    const winner = this.calculateWinner(current.squares);
+    const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : 'Go to game start';
       return (
@@ -61,8 +50,6 @@ class Game extends Component {
     } else {
       status = `Next player is: ${xIsNext ? 'X' : 'O'}`;
     }
-
-    console.log('array', current.squares);
 
     return (
       <div className="game">
