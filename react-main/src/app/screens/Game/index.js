@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { handleNextStep, addStep } from '../../../redux/history/actions';
 
 import Board from './components/Board';
 
@@ -25,7 +28,9 @@ class Game extends Component {
   handleClick = i => {
     const { history, xIsNext, stepNumber } = this.state;
     const current = history.slice(0, stepNumber + 1)[history.length - 1];
+    console.log('current', current);
     const squares = current.squares.slice();
+    console.log('squares', squares);
     if (this.calculateWinner(squares) || squares[i]) return;
     squares[i] = xIsNext ? 'X' : 'O';
     this.setState({
@@ -62,7 +67,7 @@ class Game extends Component {
       status = `Next player is: ${xIsNext ? 'X' : 'O'}`;
     }
 
-    console.log('array', current.squares);
+    console.log('props', this.props);
 
     return (
       <div className="game">
@@ -78,4 +83,17 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapStateToProps = state => ({
+  stepNumber: state.stepNumber,
+  position: state.position
+});
+
+const masDispatchToProps = dispatch => ({
+  handleNextStep: position => dispatch(handleNextStep(position)),
+  addStep: stepNumber => dispatch(addStep(stepNumber))
+});
+
+export default connect(
+  mapStateToProps,
+  masDispatchToProps
+)(Game);
