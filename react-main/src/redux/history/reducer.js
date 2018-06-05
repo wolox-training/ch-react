@@ -1,5 +1,6 @@
 const initialState = {
-  stepNumber: 0
+  stepNumber: 0,
+  xIsNext: true
 };
 
 export const historyReducer = (state = initialState, action) => {
@@ -7,12 +8,14 @@ export const historyReducer = (state = initialState, action) => {
     case 'ADD_STEP':
       return {
         ...state,
-        stepNumber: state.stepNumber + 1
+        stepNumber: state.stepNumber + 1,
+        xIsNext: !state.xIsNext
       };
     case 'SET_STEP':
       return {
         ...state,
-        stepNumber: action.stepNumber
+        stepNumber: action.stepNumber,
+        xIsNext: action.stepNumber % 2 === 0
       };
     default:
       return state;

@@ -9,8 +9,7 @@ import './styles.scss';
 
 class Game extends Component {
   state = {
-    history: [{ squares: Array(9).fill(null) }],
-    xIsNext: true
+    history: [{ squares: Array(9).fill(null) }]
   };
 
   calculateWinner = squares => {
@@ -25,34 +24,28 @@ class Game extends Component {
   };
 
   handleClick = i => {
-    const { history, xIsNext } = this.state;
-    const { stepNumber, addStep } = this.props;
+    const { history } = this.state;
+    const { stepNumber, addStep, xIsNext } = this.props;
     const current = history.slice(0, stepNumber + 1);
     const modifiedHistory = current[current.length - 1];
-    console.log('current', current, history, stepNumber);
     const squares = modifiedHistory.squares.slice();
 
     if (this.calculateWinner(squares) || squares[i]) return;
     squares[i] = xIsNext ? 'X' : 'O';
     this.setState({
-      history: history.concat([{ squares }]),
-      xIsNext: !xIsNext
+      history: current.concat([{ squares }])
     });
     addStep(stepNumber);
   };
 
   jumpTo = step => {
     const { setStep } = this.props;
-    console.log('jumpTo', step);
     setStep(step);
-    this.setState({
-      xIsNext: step % 2 === 0
-    });
   };
 
   render() {
-    const { xIsNext, history } = this.state;
-    const { stepNumber } = this.props;
+    const { history } = this.state;
+    const { stepNumber, xIsNext } = this.props;
     const current = history[stepNumber];
     const winner = this.calculateWinner(current.squares);
     const moves = history.map((step, move) => {
@@ -71,9 +64,6 @@ class Game extends Component {
       status = `Next player is: ${xIsNext ? 'X' : 'O'}`;
     }
 
-    console.log('props', this.props);
-    console.log('state', this.state);
-
     return (
       <div className="game">
         <div className="game-board">
@@ -89,7 +79,8 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => ({
-  stepNumber: state.historyReducer.stepNumber
+  stepNumber: state.historyReducer.stepNumber,
+  xIsNext: state.historyReducer.xIsNext
 });
 
 const masDispatchToProps = dispatch => ({

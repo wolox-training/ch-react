@@ -12,7 +12,6 @@ const initialState = {
 };
 
 const store = mainStore(initialState);
-console.log('store', store);
 
 ReactDOM.render(
   <Provider store={store}>
