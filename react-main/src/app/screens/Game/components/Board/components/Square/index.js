@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 class Square extends Component {
+  onClick = () => this.props.handleClick(this.props.number);
+
   render() {
-    const { onClick, value } = this.props;
+    const { value } = this.props;
     return (
-      <button className="square" onClick={onClick}>
+      <button className="square" onClick={this.onClick}>
         {value}
       </button>
     );

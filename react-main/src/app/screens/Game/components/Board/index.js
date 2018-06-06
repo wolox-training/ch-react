@@ -1,13 +1,15 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import Square from './components/Square';
 
 class Board extends Component {
-  renderSquare = i => <Square value={this.props.squares[i]} onClick={() => this.props.onClick(i)} />;
+  renderSquare = i => (
+    <Square value={this.props.squares[i]} number={i} handleClick={this.props.handleClick} />
+  );
 
   render() {
     return (
-      <Fragment>
+      <div className="game-board">
         <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
@@ -24,7 +26,7 @@ class Board extends Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
