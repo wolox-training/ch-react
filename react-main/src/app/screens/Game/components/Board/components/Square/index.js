@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Square extends Component {
+  onClick = () => this.props.handleClick(this.props.number);
+
   render() {
-    const { onClick, value } = this.props;
+    const { value } = this.props;
+    console.log(this.props);
     return (
-      <button className="square" onClick={onClick}>
+      <button className="square" onClick={this.onClick}>
         {value}
       </button>
     );
@@ -13,8 +16,9 @@ class Square extends Component {
 }
 
 Square.propTypes = {
-  onClick: PropTypes.func,
-  value: PropTypes.string
+  handleClick: PropTypes.func,
+  value: PropTypes.string,
+  number: PropTypes.number
 };
 
 export default Square;
