@@ -24,10 +24,10 @@ class Moves extends Component {
 }
 
 Moves.propTypes = {
-  history: PropTypes.arrayOf(PropTypes.string),
-  jumpTo: PropTypes.func,
-  winner: PropTypes.string,
-  xIsNext: PropTypes.bool
+  history: PropTypes.arrayOf(PropTypes.string).isRequired,
+  jumpTo: PropTypes.func.isRequired,
+  winner: PropTypes.string.isRequired,
+  xIsNext: PropTypes.bool.isRequired
 };
 
 export default Moves;
