@@ -6,7 +6,6 @@ class Square extends Component {
 
   render() {
     const { value } = this.props;
-    console.log(this.props);
     return (
       <button className="square" onClick={this.onClick}>
         {value}
@@ -16,9 +15,9 @@ class Square extends Component {
 }
 
 Square.propTypes = {
-  handleClick: PropTypes.func,
+  handleClick: PropTypes.func.isRequired,
   value: PropTypes.string,
-  number: PropTypes.number
+  number: PropTypes.number.isRequired
 };
 
 export default Square;
