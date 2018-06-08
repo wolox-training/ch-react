@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Board from './components/Board';
-import Move from './components/Move';
+import Moves from './components/Moves';
 import { calculateWinner } from './utils';
 
 class Game extends Component {
@@ -24,14 +24,12 @@ class Game extends Component {
     });
   };
 
-  jumpTo = step => {
-    const { history } = this.state;
+  jumpTo = step =>
     this.setState({
-      history: history.slice(0, step + 1),
+      history: this.state.history.slice(0, step + 1),
       stepNumber: step,
       xIsNext: step % 2 === 0
     });
-  };
 
   render() {
     const { xIsNext, history, stepNumber } = this.state;
@@ -41,7 +39,7 @@ class Game extends Component {
     return (
       <div className="game">
         <Board squares={current.squares} handleClick={this.handleClick} />
-        <Move history={history} jumpTo={this.jumpTo} xIsNext={xIsNext} winner={winner} />
+        <Moves history={history} jumpTo={this.jumpTo} xIsNext={xIsNext} winner={winner} />
       </div>
     );
   }

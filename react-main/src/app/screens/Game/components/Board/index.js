@@ -10,7 +10,6 @@ class Board extends Component {
   render() {
     return (
       <div className="game-board">
-        <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}

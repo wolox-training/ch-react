@@ -1,19 +1,11 @@
 import React, { Component, Fragment } from 'react';
 
-class Move extends Component {
-  handleJumpTo = move => {
-    this.props.jumpTo(move);
-  };
+class Moves extends Component {
+  handleJumpTo = move => this.props.jumpTo(move);
 
   render() {
     const { history, jumpTo, winner, xIsNext } = this.props;
-
-    let status;
-    if (winner) {
-      status = `The winner is: ${winner}`;
-    } else {
-      status = `Next player is: ${xIsNext ? 'X' : 'O'}`;
-    }
+    const status = winner ? `The winner is: ${winner}` : `Next player is: ${xIsNext ? 'X' : 'O'}`;
 
     return (
       <div className="game-info">
@@ -30,4 +22,4 @@ class Move extends Component {
   }
 }
 
-export default Move;
+export default Moves;
