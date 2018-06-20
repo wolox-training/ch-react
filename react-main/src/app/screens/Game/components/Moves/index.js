@@ -28,7 +28,7 @@ Moves.propTypes = {
   history: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string))).isRequired,
   jumpTo: PropTypes.func.isRequired,
   winner: PropTypes.string,
-  xIsNext: PropTypes.bool.isRequired
+  xIsNext: PropTypes.bool
 };
 
 export default Moves;
