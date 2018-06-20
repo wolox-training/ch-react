@@ -36,7 +36,6 @@ class Game extends Component {
     const { stepNumber, xIsNext } = this.props;
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
-    console.log(stepNumber, xIsNext);
 
     return (
       <div className="game">

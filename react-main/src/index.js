@@ -6,11 +6,7 @@ import './scss/index.scss';
 import mainStore from './redux/store';
 import { App } from './app';
 
-const initialState = {
-  stepNumber: 0
-};
-
-const store = mainStore(initialState);
+const store = mainStore();
 
 ReactDOM.render(
   <Provider store={store}>
