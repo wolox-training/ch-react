@@ -28,6 +28,9 @@ class Game extends Component {
 
   jumpTo = step => {
     const { handleSetStep } = this.props;
+    this.setState({
+      history: this.state.history.slice(0, step + 1)
+    });
     handleSetStep(step);
   };
 
@@ -36,6 +39,7 @@ class Game extends Component {
     const { stepNumber, xIsNext } = this.props;
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
+    console.log(stepNumber);
 
     return (
       <div className="game">
