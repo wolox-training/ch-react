@@ -1,10 +1,12 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import thunk from 'redux-thunk';
 
 import { historyReducer } from './history/reducer';
 
-const mainReducer = combineReducers({ historyReducer, routerReducer });
+const mainReducer = combineReducers({ historyReducer });
+console.log('mainReducer', mainReducer);
 
-const mainStore = initialState => createStore(mainReducer, initialState);
+// const mainStore = initialState => createStore(mainReducer, initialState, applyMiddleware(thunk));
 
-export default mainStore;
+export default mainReducer;
