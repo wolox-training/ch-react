@@ -7,7 +7,6 @@ import mainStore from './redux/store';
 import { App } from './app';
 
 const initialState = {
-  squares: Array(9).fill(null),
   stepNumber: 0
 };
 
