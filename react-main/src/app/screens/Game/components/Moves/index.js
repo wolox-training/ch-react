@@ -1,10 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Moves extends Component {
   handleJumpTo = move => this.props.jumpTo(move);
 
   render() {
-    const { history, jumpTo, winner, xIsNext } = this.props;
+    const { history, winner, xIsNext } = this.props;
     const status = winner ? `The winner is: ${winner}` : `Next player is: ${xIsNext ? 'X' : 'O'}`;
 
     return (
@@ -21,5 +22,12 @@ class Moves extends Component {
     );
   }
 }
+
+Moves.propTypes = {
+  history: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string))).isRequired,
+  jumpTo: PropTypes.func.isRequired,
+  winner: PropTypes.string,
+  xIsNext: PropTypes.bool.isRequired
+};
 
 export default Moves;
