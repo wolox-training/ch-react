@@ -39,7 +39,7 @@ class Game extends Component {
     return (
       <div className="game">
         <Board squares={current.squares} handleClick={this.handleClick} />
-        <Moves history={history} jumpTo={this.jumpTo} xIsNext={xIsNext} winner={null} />
+        <Moves history={history} jumpTo={this.jumpTo} xIsNext={xIsNext} winner={winner} />
       </div>
     );
   }
