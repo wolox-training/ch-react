@@ -7,6 +7,7 @@ class Moves extends Component {
   render() {
     const { history, winner, xIsNext } = this.props;
     const status = winner ? `The winner is: ${winner}` : `Next player is: ${xIsNext ? 'X' : 'O'}`;
+    console.log(history);
 
     return (
       <div className="game-info">
@@ -24,9 +25,9 @@ class Moves extends Component {
 }
 
 Moves.propTypes = {
-  history: PropTypes.arrayOf(PropTypes.string).isRequired,
+  history: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string))).isRequired,
   jumpTo: PropTypes.func.isRequired,
-  winner: PropTypes.string.isRequired,
+  winner: PropTypes.string,
   xIsNext: PropTypes.bool.isRequired
 };
 

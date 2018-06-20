@@ -16,7 +16,7 @@ class Square extends Component {
 
 Square.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   number: PropTypes.number.isRequired
 };
 
