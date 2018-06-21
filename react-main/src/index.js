@@ -6,7 +6,7 @@ import './scss/index.scss';
 import mainStore from './redux/store';
 import { App } from './app';
 
-const store = mainStore();
+const store = mainStore;
 
 ReactDOM.render(
   <Provider store={store}>

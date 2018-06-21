@@ -20,8 +20,10 @@ class Game extends Component {
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) return;
     squares[i] = xIsNext ? 'X' : 'O';
+    const winner = calculateWinner(squares);
     this.setState({
-      history: history.concat([{ squares }])
+      history: history.concat([{ squares }]),
+      winner
     });
     handleAddStep(stepNumber);
   };
@@ -35,15 +37,12 @@ class Game extends Component {
   };
 
   render() {
-    const { history } = this.state;
+    const { history, winner } = this.state;
     const { stepNumber, xIsNext } = this.props;
-    const current = history[stepNumber];
-    const winner = calculateWinner(current.squares);
-    console.log(stepNumber);
 
     return (
       <div className="game">
-        <Board squares={current.squares} handleClick={this.handleClick} />
+        <Board squares={history[stepNumber].squares} handleClick={this.handleClick} />
         <Moves history={history} jumpTo={this.jumpTo} xIsNext={xIsNext} winner={winner} />
       </div>
     );

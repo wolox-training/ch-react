@@ -4,6 +4,6 @@ import { historyReducer } from './history/reducer';
 
 const mainReducer = combineReducers({ historyReducer });
 
-const mainStore = initialState => createStore(mainReducer, initialState);
+const mainStore = createStore(mainReducer);
 
 export default mainStore;
