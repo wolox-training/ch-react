@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { addStep, setStep } from '../../../redux/history/actions';
 
 import Board from './components/Board';
 import Moves from './components/Moves';
@@ -6,43 +10,63 @@ import { calculateWinner } from './utils';
 
 class Game extends Component {
   state = {
-    history: [{ squares: Array(9).fill(null) }],
-    stepNumber: 0,
-    xIsNext: true
+    history: [{ squares: Array(9).fill(null) }]
   };
 
   handleClick = i => {
-    const { history, xIsNext, stepNumber } = this.state;
+    const { history } = this.state;
+    const { stepNumber, handleAddStep, xIsNext } = this.props;
     const current = history[stepNumber];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) return;
     squares[i] = xIsNext ? 'X' : 'O';
+    const winner = calculateWinner(squares);
     this.setState({
       history: history.concat([{ squares }]),
-      xIsNext: !xIsNext,
-      stepNumber: history.length
+      winner
     });
+    handleAddStep(stepNumber);
   };
 
-  jumpTo = step =>
+  jumpTo = step => {
+    const { handleSetStep } = this.props;
     this.setState({
-      history: this.state.history.slice(0, step + 1),
-      stepNumber: step,
-      xIsNext: step % 2 === 0
+      history: this.state.history.slice(0, step + 1)
     });
+    handleSetStep(step);
+  };
 
   render() {
-    const { xIsNext, history, stepNumber } = this.state;
-    const current = history[stepNumber];
-    const winner = calculateWinner(current.squares);
+    const { history, winner } = this.state;
+    const { stepNumber, xIsNext } = this.props;
 
     return (
       <div className="game">
-        <Board squares={current.squares} handleClick={this.handleClick} />
+        <Board squares={history[stepNumber].squares} handleClick={this.handleClick} />
         <Moves history={history} jumpTo={this.jumpTo} xIsNext={xIsNext} winner={winner} />
       </div>
     );
   }
 }
 
-export default Game;
+Game.propTypes = {
+  stepNumber: PropTypes.number.isRequired,
+  xIsNext: PropTypes.bool.isRequired,
+  handleAddStep: PropTypes.func.isRequired,
+  handleSetStep: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  stepNumber: state.historyReducer.stepNumber,
+  xIsNext: state.historyReducer.xIsNext
+});
+
+const masDispatchToProps = dispatch => ({
+  handleAddStep: () => dispatch(addStep()),
+  handleSetStep: stepNumber => dispatch(setStep(stepNumber))
+});
+
+export default connect(
+  mapStateToProps,
+  masDispatchToProps
+)(Game);
