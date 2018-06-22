@@ -12,7 +12,6 @@ const minLenght8 = value => (value.length >= 8 ? undefined : 'Field must be at l
 class Login extends Component {
   render() {
     const { onSubmit } = this.props;
-    console.log('props', this.props);
     return (
       <form onSubmit={onSubmit}>
         <div>
