@@ -1,33 +1,48 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const required = value => (value ? undefined : 'Field required.');
-const email = value => {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  console.log(re.test(value));
-  return re.test(value);
-};
-const minLenght8 = value => (value.length >= 8 ? undefined : 'Field must be at least 8 characters long.');
+import action from '../../../redux/login/actions';
+
+import LoginForm from './components/LoginForm';
+import Message from './components/Message';
 
 class Login extends Component {
+  componentDidMount() {
+    this.props.checkSession();
+  }
+
+  submit = values => this.props.handleAddStep({ ...values });
+
   render() {
-    const { onSubmit } = this.props;
+    const { loginMessage, session } = this.props;
     return (
-      <form onSubmit={onSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <Field name="email" component="input" type="email" validate={[required, email]} />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" component="input" type="password" validate={[required, minLenght8]} />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <Fragment>
+        {!session && <LoginForm onSubmit={this.submit} />}
+        {(loginMessage.length > 0 || !session) && <Message message={loginMessage} />}
+      </Fragment>
     );
   }
 }
 
-export default (Login = reduxForm({
-  form: 'login'
-})(Login));
+Login.propTypes = {
+  loginMessage: PropTypes.string,
+  handleAddStep: PropTypes.func,
+  checkSession: PropTypes.func,
+  session: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  loginMessage: state.login.message,
+  session: state.login.session
+});
+
+const masDispatchToProps = dispatch => ({
+  handleAddStep: loginData => dispatch(action.login(loginData)),
+  checkSession: () => dispatch(action.checkToken())
+});
+
+export default connect(
+  mapStateToProps,
+  masDispatchToProps
+)(Login);

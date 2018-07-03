@@ -4,8 +4,14 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
 import { historyReducer } from './history/reducer';
+import { loginReducer } from './login/reducer';
 
-const mainReducer = combineReducers({ historyReducer, routing: routerReducer, form: formReducer });
+const mainReducer = combineReducers({
+  history: historyReducer,
+  login: loginReducer,
+  routing: routerReducer,
+  form: formReducer
+});
 
 const store = createStore(mainReducer, applyMiddleware(thunk));
 

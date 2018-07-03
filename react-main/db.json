@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "email": "vendor@wolox.cl",
+      "password": "12345678",
+      "id": 1,
+      "token": "tokentest1"
+    },
+    {
+      "email": "js@wolox.cl",
+      "password": "12345678",
+      "id": 2,
+      "token": "tokentest2"
+    }
+  ]
+}
