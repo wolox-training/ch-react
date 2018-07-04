@@ -21,39 +21,38 @@ export const privateActionCreators = {
     payload: {
       session: false
     }
+  }),
+  loginUser: () => ({
+    type: actions.loginUser
+  }),
+  loginSuccess: () => ({
+    type: actions.loginSuccess,
+    payload: {
+      message: 'Login correct!'
+    }
+  }),
+  loginError: () => ({
+    type: actions.loginError,
+    payload: {
+      message: 'Login error!'
+    }
   })
 };
 
-export const loginUser = () => ({
-  type: actions.loginUser
-});
-
-export const loginSuccess = () => ({
-  type: actions.loginSuccess,
-  payload: {
-    message: 'Login correct!'
-  }
-});
-
-export const loginError = () => ({
-  type: actions.loginError,
-  payload: {
-    message: 'Login error!'
-  }
-});
-
 const actionCreators = {
   login: userAuth => async dispatch => {
-    dispatch(loginUser());
+    dispatch(privateActionCreators.loginUser());
     const userData = await LoginService.login();
-    const user = userData.filter(
-      userDatabase => userDatabase.email === userAuth.email && userDatabase.password === userAuth.password
-    );
-    if (user.length !== 0) {
-      LocalStorageService.saveKey(user[0].token);
-      return dispatch(loginSuccess());
+    if (userData.ok) {
+      const user = userData.filter(
+        userDatabase => userDatabase.email === userAuth.email && userDatabase.password === userAuth.password
+      );
+      if (user.length !== 0) {
+        LocalStorageService.saveKey(user[0].token);
+        return dispatch(privateActionCreators.loginSuccess());
+      }
     }
-    return dispatch(loginError());
+    return dispatch(privateActionCreators.loginError());
   },
   checkToken: () => async dispatch => {
     const token = LocalStorageService.getKey();
