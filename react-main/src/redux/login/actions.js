@@ -12,11 +12,15 @@ export const actions = {
 export const privateActionCreators = {
   tokenExists: () => ({
     type: actions.tokenExists,
-    session: true
+    payload: {
+      session: true
+    }
   }),
   tokenNotExists: () => ({
     type: actions.tokenNotExists,
-    session: false
+    payload: {
+      session: false
+    }
   })
 };
 
@@ -26,12 +30,16 @@ export const loginUser = () => ({
 
 export const loginSuccess = () => ({
   type: actions.loginSuccess,
-  message: 'Login correct!'
+  payload: {
+    message: 'Login correct!'
+  }
 });
 
 export const loginError = () => ({
   type: actions.loginError,
-  message: 'Login error!'
+  payload: {
+    message: 'Login error!'
+  }
 });
 
 const actionCreators = {

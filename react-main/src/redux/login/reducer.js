@@ -12,23 +12,23 @@ export const loginReducer = (state = initialState, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        message: action.message
+        message: action.payload.message
       };
     case 'LOGIN_ERROR':
       return {
         ...state,
-        message: action.message
+        message: action.payload.message
       };
     case 'TOKEN_EXISTS':
       return {
         ...state,
-        message: action.message,
-        session: action.session
+        message: action.payload.message,
+        session: action.payload.session
       };
     case 'TOKEN_NOT_EXISTS':
       return {
         ...state,
-        session: action.session
+        session: action.payload.session
       };
     default:
       return state;
