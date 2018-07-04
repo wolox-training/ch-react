@@ -44,7 +44,7 @@ const actionCreators = {
     dispatch(privateActionCreators.loginUser());
     const userData = await LoginService.login();
     if (userData.ok) {
-      const user = userData.filter(
+      const user = userData.data.filter(
         userDatabase => userDatabase.email === userAuth.email && userDatabase.password === userAuth.password
       );
       if (user.length !== 0) {
