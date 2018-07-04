@@ -9,16 +9,16 @@ export const actions = {
   tokenNotExists: 'TOKEN_NOT_EXISTS'
 };
 
-export const tokenExists = user => ({
-  type: actions.tokenExists,
-  message: `Welcome ${user.email}`,
-  session: true
-});
-
-export const tokenNotExists = () => ({
-  type: actions.tokenNotExists,
-  session: false
-});
+export const privateActionCreators = {
+  tokenExists: () => ({
+    type: actions.tokenExists,
+    session: true
+  }),
+  tokenNotExists: () => ({
+    type: actions.tokenNotExists,
+    session: false
+  })
+};
 
 export const loginUser = () => ({
   type: actions.loginUser
@@ -37,26 +37,21 @@ export const loginError = () => ({
 const actionCreators = {
   login: userAuth => async dispatch => {
     dispatch(loginUser());
-    try {
-      const userData = await LoginService.login();
-      const user = userData.filter(
-        userDatabase => userDatabase.email === userAuth.email && userDatabase.password === userAuth.password
-      );
-      if (user.length !== 0) {
-        LocalStorageService.saveKey(user[0].token);
-        dispatch(loginSuccess());
-      } else {
-        dispatch(loginError());
-      }
-    } catch (error) {
-      return dispatch(loginError(error));
+    const userData = await LoginService.login();
+    const user = userData.filter(
+      userDatabase => userDatabase.email === userAuth.email && userDatabase.password === userAuth.password
+    );
+    if (user.length !== 0) {
+      LocalStorageService.saveKey(user[0].token);
+      return dispatch(loginSuccess());
     }
+    return dispatch(loginError());
   },
   checkToken: () => async dispatch => {
     const token = LocalStorageService.getKey();
-    const userData = await LoginService.login();
-    const user = userData.filter(userDatabase => userDatabase.token === token);
-    return token ? dispatch(tokenExists(user[0])) : false;
+    return token
+      ? dispatch(privateActionCreators.tokenExists())
+      : dispatch(privateActionCreators.tokenNotExists());
   }
 };
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
-import { email, required, minLength8 } from '../validations';
+import { email, required, minLength8 } from '../../../../validations/validations';
 
 import CustomInput from './CustomInput';
 

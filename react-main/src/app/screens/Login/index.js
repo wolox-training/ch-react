@@ -12,7 +12,7 @@ class Login extends Component {
     this.props.checkSession();
   }
 
-  submit = values => this.props.handleAddStep({ ...values });
+  submit = values => this.props.login({ ...values });
 
   render() {
     const { loginMessage, session } = this.props;
@@ -27,7 +27,7 @@ class Login extends Component {
 
 Login.propTypes = {
   loginMessage: PropTypes.string,
-  handleAddStep: PropTypes.func,
+  login: PropTypes.func,
   checkSession: PropTypes.func,
   session: PropTypes.bool
 };
@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 });
 
 const masDispatchToProps = dispatch => ({
-  handleAddStep: loginData => dispatch(action.login(loginData)),
+  login: loginData => dispatch(action.login(loginData)),
   checkSession: () => dispatch(action.checkToken())
 });
 
