@@ -1,0 +1,14 @@
+.navbar {
+	align-items: center;
+	background-color: red;
+	display: flex;
+	height: $nav-height;
+	justify-content: space-between;
+	padding: 0px 20px;
+	position: fixed;
+	width: 100%;
+}
+
+.navbarElement {
+	margin: 10px 5px;
+}

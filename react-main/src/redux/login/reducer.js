@@ -19,6 +19,10 @@ export const loginReducer = (state = initialState, action) => {
         ...state,
         message: action.message
       };
+    case 'LOGOUT':
+      return {
+        ...state
+      };
     case 'TOKEN_EXISTS':
       return {
         ...state,

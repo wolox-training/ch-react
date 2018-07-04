@@ -16,6 +16,7 @@ class Login extends Component {
 
   render() {
     const { loginMessage, session } = this.props;
+    console.log(this.props);
     return (
       <Fragment>
         {!session && <LoginForm onSubmit={this.submit} />}

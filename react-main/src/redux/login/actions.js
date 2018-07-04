@@ -5,6 +5,7 @@ export const actions = {
   loginUser: 'LOGIN_USER',
   loginSuccess: 'LOGIN_SUCCESS',
   loginError: 'LOGIN_ERROR',
+  logout: 'LOGOUT',
   tokenExists: 'TOKEN_EXISTS',
   tokenNotExists: 'TOKEN_NOT_EXISTS'
 };
@@ -18,6 +19,10 @@ export const tokenExists = user => ({
 export const tokenNotExists = () => ({
   type: actions.tokenNotExists,
   session: false
+});
+
+export const logout = () => ({
+  type: actions.logout
 });
 
 export const loginUser = () => ({
@@ -51,6 +56,10 @@ const actionCreators = {
     } catch (error) {
       return dispatch(loginError(error));
     }
+  },
+  logout: () => dispatch => {
+    LocalStorageService.deleteKey();
+    dispatch(logout());
   },
   checkToken: () => async dispatch => {
     const token = LocalStorageService.getKey();
