@@ -5,7 +5,7 @@ class CustomInput extends Component {
   render() {
     const { label, input, type, meta } = this.props;
     return (
-      <div className="inputContainer">
+      <div className="flex-center-column">
         <label htmlFor="email">{label}</label>
         <input {...input} type={type} />
         {meta.error && meta.touched && <div className="alert">{meta.error}</div>}
@@ -18,8 +18,8 @@ CustomInput.propTypes = {
   handleSubmit: PropTypes.func,
   label: PropTypes.string,
   input: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.func, PropTypes.string])).isRequired,
-  type: PropTypes.string,
-  meta: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.bool]))
+  type: PropTypes.string.isRequired,
+  meta: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.bool])).isRequired
 };
 
 export default CustomInput;

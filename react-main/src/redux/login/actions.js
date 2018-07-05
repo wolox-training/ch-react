@@ -16,58 +16,68 @@ export const tokenExists = user => ({
   session: true
 });
 
-export const tokenNotExists = () => ({
-  type: actions.tokenNotExists,
-  session: false
-});
-
-export const logout = () => ({
-  type: actions.logout
-});
-
-export const loginUser = () => ({
-  type: actions.loginUser
-});
-
-export const loginSuccess = () => ({
-  type: actions.loginSuccess,
-  message: 'Login correct!',
-  session: true
-});
-
-export const loginError = () => ({
-  type: actions.loginError,
-  message: 'Login error!',
-  session: false
-});
+export const privateActionCreators = {
+  tokenExists: () => ({
+    type: actions.tokenExists,
+    payload: {
+      session: true
+    }
+  }),
+  tokenNotExists: () => ({
+    type: actions.tokenNotExists,
+    payload: {
+      session: false
+    }
+  }),
+  logout: () => ({
+    type: actions.logout,
+    payload: {
+      session: false
+    }
+  }),
+  loginUser: () => ({
+    type: actions.loginUser
+  }),
+  loginSuccess: () => ({
+    type: actions.loginSuccess,
+    payload: {
+      message: 'Login correct!',
+      session: true
+    }
+  }),
+  loginError: () => ({
+    type: actions.loginError,
+    payload: {
+      message: 'Login error!',
+      session: false
+    }
+  })
+};
 
 const actionCreators = {
   login: userAuth => async dispatch => {
-    dispatch(loginUser());
-    try {
-      const userData = await LoginService.login();
-      const user = userData.filter(
+    dispatch(privateActionCreators.loginUser());
+    const userData = await LoginService.login();
+    if (userData.ok) {
+      const user = userData.data.filter(
         userDatabase => userDatabase.email === userAuth.email && userDatabase.password === userAuth.password
       );
       if (user.length !== 0) {
         LocalStorageService.saveKey(user[0].token);
-        dispatch(loginSuccess());
-      } else {
-        dispatch(loginError());
+        return dispatch(privateActionCreators.loginSuccess());
       }
-    } catch (error) {
-      return dispatch(loginError(error));
     }
+    return dispatch(privateActionCreators.loginError());
   },
   logout: () => dispatch => {
     LocalStorageService.deleteKey();
-    dispatch(logout());
+    dispatch(privateActionCreators.logout());
   },
   checkToken: () => async dispatch => {
     const token = LocalStorageService.getKey();
-    const userData = await LoginService.login();
-    const user = userData.filter(userDatabase => userDatabase.token === token);
-    return token ? dispatch(tokenExists(user[0])) : false;
+    return token
+      ? dispatch(privateActionCreators.tokenExists())
+      : dispatch(privateActionCreators.tokenNotExists());
   }
 };
 

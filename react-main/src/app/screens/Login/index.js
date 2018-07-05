@@ -13,7 +13,7 @@ class Login extends Component {
   }
 
   submit = values => {
-    this.props.handleAddStep({ ...values });
+    this.props.login({ ...values });
     if (this.props.session) location.reload();
   };
 
@@ -29,9 +29,9 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  loginMessage: PropTypes.string,
-  handleAddStep: PropTypes.func,
-  checkSession: PropTypes.func,
+  loginMessage: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
+  checkSession: PropTypes.func.isRequired,
   session: PropTypes.bool
 };
 
@@ -41,7 +41,7 @@ const mapStateToProps = state => ({
 });
 
 const masDispatchToProps = dispatch => ({
-  handleAddStep: loginData => dispatch(action.login(loginData)),
+  login: loginData => dispatch(action.login(loginData)),
   checkSession: () => dispatch(action.checkToken())
 });
 
