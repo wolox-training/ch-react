@@ -22,7 +22,6 @@ export const loginReducer = (state = initialState, action) => {
     case 'TOKEN_EXISTS':
       return {
         ...state,
-        message: action.payload.message,
         session: action.payload.session
       };
     case 'TOKEN_NOT_EXISTS':

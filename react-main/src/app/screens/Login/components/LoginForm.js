@@ -10,7 +10,7 @@ class LoginForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit} className="formContainer">
+      <form onSubmit={handleSubmit} className="flex-center-column">
         <Field label="Email" name="email" component={CustomInput} type="email" validate={[required, email]} />
         <Field
           label="Password"
@@ -19,7 +19,7 @@ class LoginForm extends Component {
           type="password"
           validate={[required, minLength8]}
         />
-        <button className="inputContainer" type="submit">
+        <button className="flex-center-column inputContainer" type="submit">
           Submit
         </button>
       </form>

@@ -26,10 +26,10 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  loginMessage: PropTypes.string,
-  login: PropTypes.func,
-  checkSession: PropTypes.func,
-  session: PropTypes.bool
+  loginMessage: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
+  checkSession: PropTypes.func.isRequired,
+  session: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({

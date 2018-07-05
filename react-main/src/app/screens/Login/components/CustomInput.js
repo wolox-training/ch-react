@@ -5,7 +5,7 @@ class CustomInput extends Component {
   render() {
     const { label, input, type, meta } = this.props;
     return (
-      <div className="inputContainer">
+      <div className="flex-center-column">
         <label htmlFor="email">{label}</label>
         <input {...input} type={type} />
         {meta.error && meta.touched && <div className="alert">{meta.error}</div>}
