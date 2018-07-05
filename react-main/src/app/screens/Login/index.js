@@ -12,11 +12,13 @@ class Login extends Component {
     this.props.checkSession();
   }
 
-  submit = values => this.props.handleAddStep({ ...values });
+  submit = values => {
+    this.props.handleAddStep({ ...values });
+    if (this.props.session) location.reload();
+  };
 
   render() {
     const { loginMessage, session } = this.props;
-    console.log(this.props);
     return (
       <Fragment>
         {!session && <LoginForm onSubmit={this.submit} />}

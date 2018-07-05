@@ -2,36 +2,12 @@ $equalizer-black: #000;
 $equalizer-grey: #999;
 
 * {
-  box-sizing: border-box;
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-label,
-input,
-a,
-button,
-select,
-textarea {
-  color: $equalizer-black;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 14px;
+body {
   margin: 0;
-
-  &:focus {
-    outline: none;
-  }
+  padding: 0;
 }
 
 select {
@@ -44,32 +20,16 @@ table {
   table-layout: fixed;
 }
 
-input,
-select,
-textarea,
-button {
-  border: 0;
-  border-radius: 0;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-button {
-  background: transparent;
-  cursor: pointer;
-}
-
-button::-moz-focus-inner {
-  border: 0;
-}
-
 a {
   cursor: pointer;
   text-decoration: none;
+  color: $equalizer-black;
 
   &:focus,
   &:active,

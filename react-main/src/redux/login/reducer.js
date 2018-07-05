@@ -12,12 +12,14 @@ export const loginReducer = (state = initialState, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        message: action.message
+        message: action.message,
+        session: action.session
       };
     case 'LOGIN_ERROR':
       return {
         ...state,
-        message: action.message
+        message: action.message,
+        session: action.session
       };
     case 'LOGOUT':
       return {

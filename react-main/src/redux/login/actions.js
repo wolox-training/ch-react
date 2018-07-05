@@ -31,12 +31,14 @@ export const loginUser = () => ({
 
 export const loginSuccess = () => ({
   type: actions.loginSuccess,
-  message: 'Login correct!'
+  message: 'Login correct!',
+  session: true
 });
 
 export const loginError = () => ({
   type: actions.loginError,
-  message: 'Login error!'
+  message: 'Login error!',
+  session: false
 });
 
 const actionCreators = {

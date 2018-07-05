@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addStep, setStep } from '../../../redux/history/actions';
+import { addStep, setStep } from '../../../../../redux/history/actions';
 
 import Board from './components/Board';
 import Moves from './components/Moves';

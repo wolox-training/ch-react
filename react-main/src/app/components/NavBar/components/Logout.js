@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { logout } from '../../../../redux/login/actions';
+import action from '../../../../redux/login/actions';
 
 class Logout extends Component {
-  handleLogout = () => this.props.logout();
+  handleLogout = () => {
+    this.props.logout();
+    location.reload();
+  };
 
   render() {
-    console.log(this.props);
-    return <div onClick={this.handleLogout}>Logout</div>;
+    return (
+      <button className="logoutButton" onClick={this.handleLogout}>
+        Logout
+      </button>
+    );
   }
 }
 
-const mapStateToProps = state => ({
-  
-});
+Logout.propTypes = {
+  logout: PropTypes.func.isRequired
+};
 
-const masDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(action.logout())
 });
 
 export default connect(
-  masDispatchToProps,
-  mapStateToProps
+  null,
+  mapDispatchToProps
 )(Logout);
