@@ -15,11 +15,11 @@ class CustomInput extends Component {
 }
 
 CustomInput.propTypes = {
-  handleSubmit: PropTypes.func,
+  handleSubmit: PropTypes.func.isRequired,
   label: PropTypes.string,
   input: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.func, PropTypes.string])).isRequired,
-  type: PropTypes.string,
-  meta: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.bool]))
+  type: PropTypes.string.isRequired,
+  meta: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.func, PropTypes.string, PropTypes.bool])).isRequired
 };
 
 export default CustomInput;
