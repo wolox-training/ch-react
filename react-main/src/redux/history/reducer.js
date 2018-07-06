@@ -17,6 +17,15 @@ export const historyReducer = (state = initialState, action) => {
         stepNumber: action.stepNumber,
         xIsNext: action.stepNumber % 2 === 0
       };
+    case 'SAVE_GAME':
+      return {
+        ...state
+      };
+    case 'GET_GAMES':
+      return {
+        ...state,
+        history: action.payload.history
+      };
     default:
       return state;
   }

@@ -5,6 +5,7 @@ import { PATHS } from '../../../constants';
 import NavBar from '../../components/NavBar';
 
 import Game from './screens/Game';
+import History from './screens/History';
 
 class Home extends Component {
   render() {
@@ -14,6 +15,7 @@ class Home extends Component {
           <NavBar {...this.props} />
           <Switch>
             <Route exact path={PATHS.GAME} component={Game} />
+            <Route exact path={PATHS.HISTORY} component={History} />
           </Switch>
         </Fragment>
       </Router>

@@ -7,7 +7,7 @@ import { PATHS } from '../../../constants';
 
 const AuthenticatedRoute = ({ session, isPublicRoute, isPrivateRoute, path, component: Component }) => {
   if (isPublicRoute && session) {
-    return <Redirect to={PATHS.GAME} />;
+    return <Redirect to={PATHS.HOME} />;
   } else if (isPrivateRoute && !session) {
     return <Redirect to={PATHS.LOGIN} />;
   }

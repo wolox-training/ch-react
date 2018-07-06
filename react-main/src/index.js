@@ -19,7 +19,7 @@ ReactDOM.render(
     <Router history={history}>
       <Switch>
         <AuthenticatedRoute path={PATHS.LOGIN} component={Login} isPublicRoute />
-        <AuthenticatedRoute path={PATHS.GAME} component={Home} isPrivateRoute />
+        <AuthenticatedRoute path={PATHS.HOME} component={Home} isPrivateRoute />
       </Switch>
     </Router>
   </Provider>,
