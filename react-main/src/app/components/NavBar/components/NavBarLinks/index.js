@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { LINKS_ARRAY } from '../../../../constants';
+import { LINKS_ARRAY } from '../../../../../constants';
 
 class NavBarLinks extends Component {
   render() {

@@ -14,7 +14,9 @@ class Login extends Component {
 
   submit = values => {
     this.props.login({ ...values });
-    if (this.props.session) location.reload();
+    if (this.props.session) {
+      location.reload();
+    }
   };
 
   render() {

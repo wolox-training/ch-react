@@ -8,7 +8,7 @@ class NavBar extends Component {
     return (
       <div className="navbar">
         <NavBarLinks />
-        <Logout {...this.props} />
+        <Logout />
       </div>
     );
   }

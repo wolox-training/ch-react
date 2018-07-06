@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import action from '../../../../redux/login/actions';
+import action from '../../../../../redux/login/actions';
 
 class Logout extends Component {
   handleLogout = () => {
