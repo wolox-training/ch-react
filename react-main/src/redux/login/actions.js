@@ -5,9 +5,16 @@ export const actions = {
   loginUser: 'LOGIN_USER',
   loginSuccess: 'LOGIN_SUCCESS',
   loginError: 'LOGIN_ERROR',
+  logout: 'LOGOUT',
   tokenExists: 'TOKEN_EXISTS',
   tokenNotExists: 'TOKEN_NOT_EXISTS'
 };
+
+export const tokenExists = user => ({
+  type: actions.tokenExists,
+  message: `Welcome ${user.email}`,
+  session: true
+});
 
 export const privateActionCreators = {
   tokenExists: () => ({
@@ -22,19 +29,27 @@ export const privateActionCreators = {
       session: false
     }
   }),
+  logout: () => ({
+    type: actions.logout,
+    payload: {
+      session: false
+    }
+  }),
   loginUser: () => ({
     type: actions.loginUser
   }),
   loginSuccess: () => ({
     type: actions.loginSuccess,
     payload: {
-      message: 'Login correct!'
+      message: 'Login correct!',
+      session: true
     }
   }),
   loginError: () => ({
     type: actions.loginError,
     payload: {
-      message: 'Login error!'
+      message: 'Login error!',
+      session: false
     }
   })
 };
@@ -53,6 +68,10 @@ const actionCreators = {
       }
     }
     return dispatch(privateActionCreators.loginError());
+  },
+  logout: () => dispatch => {
+    LocalStorageService.deleteKey();
+    dispatch(privateActionCreators.logout());
   },
   checkToken: () => async dispatch => {
     const token = LocalStorageService.getKey();

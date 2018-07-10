@@ -12,7 +12,12 @@ class Login extends Component {
     this.props.checkSession();
   }
 
-  submit = values => this.props.login({ ...values });
+  submit = values => {
+    this.props.login({ ...values });
+    if (this.props.session) {
+      location.reload();
+    }
+  };
 
   render() {
     const { loginMessage, session } = this.props;
@@ -29,7 +34,7 @@ Login.propTypes = {
   loginMessage: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
   checkSession: PropTypes.func.isRequired,
-  session: PropTypes.bool.isRequired
+  session: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
