@@ -26,6 +26,12 @@ export const historyReducer = (state = initialState, action) => {
         ...state,
         history: action.payload.history
       };
+    case 'RESET_GAME':
+      return {
+        ...state,
+        stepNumber: 0,
+        xIsNext: true
+      };
     default:
       return state;
   }

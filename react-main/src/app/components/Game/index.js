@@ -15,12 +15,27 @@ class GameBoard extends Component {
     winner: null
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.history && this.state.history.length !== nextProps.history.length) {
+      this.setState({ history: nextProps.history });
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
+
   handleClick = i => {
+    if (this.props.history) {
+      return;
+    }
     const { history } = this.state;
     const { stepNumber, handleAddStep, xIsNext } = this.props;
     const current = history[stepNumber];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) return;
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
     squares[i] = xIsNext ? 'X' : 'O';
     const winner = calculateWinner(squares);
     this.setState({
@@ -45,11 +60,15 @@ class GameBoard extends Component {
   render() {
     const { history, winner } = this.state;
     const { stepNumber, xIsNext } = this.props;
-    console.log(this.state, this.props);
     return (
       <div className="game">
         <Board squares={history[stepNumber].squares} handleClick={this.handleClick} />
-        <Moves history={history} jumpTo={this.jumpTo} xIsNext={xIsNext} winner={winner} />
+        <Moves
+          history={!this.props.history ? history : this.props.history}
+          jumpTo={this.jumpTo}
+          xIsNext={xIsNext}
+          winner={winner}
+        />
         {winner !== null && <SaveButton handleSave={this.handleSave} />}
       </div>
     );
@@ -60,7 +79,10 @@ GameBoard.propTypes = {
   stepNumber: PropTypes.number.isRequired,
   xIsNext: PropTypes.bool.isRequired,
   handleAddStep: PropTypes.func.isRequired,
-  handleSetStep: PropTypes.func.isRequired
+  handleSetStep: PropTypes.func.isRequired,
+  history: PropTypes.arrayOf(PropTypes.object),
+  saveMatch: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -72,7 +94,8 @@ const masDispatchToProps = dispatch => ({
   handleAddStep: () => dispatch(action.addStep()),
   handleSetStep: stepNumber => dispatch(action.setStep(stepNumber)),
   saveMatch: game => dispatch(action.saveGame(game)),
-  getHistoryMatch: () => dispatch(action.getMatch())
+  getHistoryMatch: () => dispatch(action.getMatch()),
+  reset: () => dispatch(action.resetGame())
 });
 
 export default connect(

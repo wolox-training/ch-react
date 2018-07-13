@@ -7,7 +7,6 @@ class Moves extends Component {
   render() {
     const { history, winner, xIsNext } = this.props;
     const status = winner ? `The winner is: ${winner}` : `Next player is: ${xIsNext ? 'X' : 'O'}`;
-
     return (
       <div className="game-info">
         <div>{status}</div>
