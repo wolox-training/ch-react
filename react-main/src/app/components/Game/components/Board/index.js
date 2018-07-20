@@ -5,7 +5,12 @@ import Square from './components/Square';
 
 class Board extends Component {
   renderSquare = i => (
-    <Square value={this.props.squares[i]} number={i} handleClick={this.props.handleClick} />
+    <Square
+      disabled={this.props.disabled}
+      value={this.props.squares[i]}
+      number={i}
+      handleClick={this.props.handleClick}
+    />
   );
 
   render() {
@@ -33,7 +38,8 @@ class Board extends Component {
 
 Board.propTypes = {
   squares: PropTypes.arrayOf(PropTypes.string).isRequired,
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool
 };
 
 export default Board;

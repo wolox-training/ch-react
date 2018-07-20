@@ -23,20 +23,25 @@ class History extends Component {
     const { currentHistory } = this.state;
     const { history } = this.props;
     return (
-      <Fragment>
-        <div className="buttonContainer">
-          {history &&
-            history.map((game, i) => (
-              <ButtonHistory
-                currentHistory={currentHistory}
-                key={i}
-                handleHistoryClick={this.handleHistoryClick}
-                historyNumber={i}
-              />
-            ))}
-        </div>
-        {history && history.length > 0 && <GameBoard history={history[currentHistory]} />}
-      </Fragment>
+      <div>
+        {history &&
+          history.length > 0 && (
+            <Fragment>
+              <div className="buttonContainer">
+                {history &&
+                  history.map((game, i) => (
+                    <ButtonHistory
+                      currentHistory={currentHistory}
+                      key={i}
+                      handleHistoryClick={this.handleHistoryClick}
+                      historyNumber={i}
+                    />
+                  ))}
+              </div>
+              <GameBoard history={history[currentHistory]} disabled />
+            </Fragment>
+          )}
+      </div>
     );
   }
 }

@@ -45,9 +45,7 @@ class GameBoard extends Component {
     handleAddStep(stepNumber);
   };
 
-  handleSave = () => {
-    this.props.saveMatch([this.state.history]);
-  };
+  handleSave = () => this.props.saveMatch([this.state.history]);
 
   jumpTo = step => {
     const { handleSetStep } = this.props;
@@ -59,10 +57,15 @@ class GameBoard extends Component {
 
   render() {
     const { history, winner } = this.state;
-    const { stepNumber, xIsNext } = this.props;
+    const { stepNumber, xIsNext, disabled } = this.props;
     return (
       <div className="game">
-        <Board squares={history[stepNumber].squares} handleClick={this.handleClick} />
+        <Board
+          history={this.props.history}
+          squares={history[stepNumber].squares}
+          handleClick={this.handleClick}
+          disabled={disabled}
+        />
         <Moves
           history={!this.props.history ? history : this.props.history}
           jumpTo={this.jumpTo}
@@ -82,7 +85,8 @@ GameBoard.propTypes = {
   handleSetStep: PropTypes.func.isRequired,
   history: PropTypes.arrayOf(PropTypes.object),
   saveMatch: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired
+  reset: PropTypes.func.isRequired,
+  disabled: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
@@ -90,7 +94,7 @@ const mapStateToProps = state => ({
   xIsNext: state.history.xIsNext
 });
 
-const masDispatchToProps = dispatch => ({
+const mapDispatchProps = dispatch => ({
   handleAddStep: () => dispatch(action.addStep()),
   handleSetStep: stepNumber => dispatch(action.setStep(stepNumber)),
   saveMatch: game => dispatch(action.saveGame(game)),
@@ -100,5 +104,5 @@ const masDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  masDispatchToProps
+  mapDispatchProps
 )(GameBoard);

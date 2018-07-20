@@ -10,6 +10,10 @@
 	display: table;
 }
 
+.disabled {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
 .formContainer {
 	display: flex;
 	flex-direction: column;
@@ -35,7 +39,7 @@
 }
 
 .kbd-navigation .square:focus {
-	background: #ddd;
+	background: $grey-light;
 }
 
 .status {
@@ -44,7 +48,7 @@
 
 .square {
 	background: $white;
-	border: 1px solid #999;
+	border: 1px solid $grey-dark;
 	float: left;
 	font-size: 24px;
 	font-weight: bold;

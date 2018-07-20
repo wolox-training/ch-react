@@ -2,12 +2,12 @@ $equalizer-black: #000;
 $equalizer-grey: #999;
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 select {
@@ -16,37 +16,37 @@ select {
 }
 
 table {
-  border-collapse: collapse;
-  table-layout: fixed;
+	border-collapse: collapse;
+	table-layout: fixed;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 a {
-  cursor: pointer;
-  text-decoration: none;
-  color: $equalizer-black;
+	cursor: pointer;
+	text-decoration: none;
+	color: $equalizer-black;
 
-  &:focus,
-  &:active,
-  &:hover {
-    color: $equalizer-black;
-    text-decoration: none;
-  }
+	&:focus,
+	&:active,
+	&:hover {
+		color: $equalizer-black;
+		text-decoration: none;
+	}
 }
 
 ul,
 li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 ::placeholder {
-  color: $equalizer-grey;
-  opacity: 1;
+	color: $equalizer-grey;
+	opacity: 1;
 }

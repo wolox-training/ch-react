@@ -1,11 +1,12 @@
-import * as LocalStorageService from '../../services/LocalStorageService';
+import * as HistoryService from '../../services/HistoryService';
 
 export const actions = {
   addStep: 'ADD_STEP',
   setStep: 'SET_STEP',
   saveGame: 'SAVE_GAME',
   getGames: 'GET_GAMES',
-  resetGame: 'RESET_GAME'
+  resetGame: 'RESET_GAME',
+  errorGame: 'ERROR_GAME'
 };
 
 export const addStep = () => ({
@@ -28,6 +29,10 @@ export const getGames = games => ({
   }
 });
 
+export const errorGame = () => ({
+  type: actions.errorGame
+});
+
 export const resetGame = () => ({
   type: actions.resetGame
 });
@@ -35,16 +40,18 @@ export const resetGame = () => ({
 const actionCreators = {
   addStep: () => dispatch => dispatch(addStep()),
   setStep: stepNumber => dispatch => dispatch(setStep(stepNumber)),
-  saveGame: board => dispatch => {
-    const currentHistory = JSON.parse(LocalStorageService.getHistory()) || [];
-    currentHistory.push(board[0]);
-    const historyString = JSON.stringify(currentHistory);
-    LocalStorageService.saveHistory(historyString);
+  saveGame: board => async dispatch => {
+    const currentHistory = await HistoryService.getHistory();
+    HistoryService.saveHistory([...currentHistory.data[0].game, ...board]);
     return dispatch(saveGame());
   },
-  getGame: () => dispatch => {
-    const games = LocalStorageService.getHistory();
-    return dispatch(getGames(JSON.parse(games)));
+  getGame: () => async dispatch => {
+    const response = await HistoryService.getHistory();
+    if (response.ok) {
+      const currentHistory = response.data;
+      return dispatch(getGames(currentHistory[0].game));
+    }
+    return dispatch(errorGame());
   },
   resetGame: () => dispatch => dispatch(resetGame())
 };

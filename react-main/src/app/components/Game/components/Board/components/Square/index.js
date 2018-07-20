@@ -5,9 +5,9 @@ class Square extends Component {
   onClick = () => this.props.handleClick(this.props.number);
 
   render() {
-    const { value } = this.props;
+    const { value, disabled } = this.props;
     return (
-      <button className="square" onClick={this.onClick}>
+      <button className={`square ${!disabled ? '' : 'disabled'}`} onClick={this.onClick}>
         {value}
       </button>
     );
@@ -17,7 +17,8 @@ class Square extends Component {
 Square.propTypes = {
   handleClick: PropTypes.func.isRequired,
   value: PropTypes.string,
-  number: PropTypes.number.isRequired
+  number: PropTypes.number.isRequired,
+  disabled: PropTypes.bool
 };
 
 export default Square;
